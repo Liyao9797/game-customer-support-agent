@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>玩家反馈工作台</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="ops-page">
+    <div class="ops-shell">
+      <header class="ops-header">
+        <div>
+          <h1>玩家反馈工作台</h1>
+          <p>客服、运营、策划和技术同学用于查看、分拣和处理反馈。</p>
+        </div>
+        <nav class="ops-nav">
+          <a class="text-link" href="./player.html">玩家端</a>
+          <a class="text-link" href="./index.html">Debug</a>
+        </nav>
+      </header>
+
+      <section class="ops-toolbar">
+        <input id="opsSearch" type="search" placeholder="搜索反馈 ID、UID、摘要或原始问题" />
+        <select id="priorityFilter">
+          <option value="">全部优先级</option>
+          <option value="P0">P0</option>
+          <option value="P1">P1</option>
+          <option value="P2">P2</option>
+          <option value="P3">P3</option>
+        </select>
+        <select id="statusFilter">
+          <option value="">全部状态</option>
+          <option value="submitted">已提交</option>
+          <option value="triaged">已受理</option>
+          <option value="processing">处理中</option>
+          <option value="waiting_player">待补充信息</option>
+          <option value="resolved">已处理</option>
+          <option value="closed">已关闭</option>
+        </select>
+        <select id="categoryFilter">
+          <option value="">全部分类</option>
+          <option value="支付充值">支付充值</option>
+          <option value="活动奖励">活动奖励</option>
+          <option value="游戏 BUG">游戏 BUG</option>
+          <option value="账号安全">账号安全</option>
+          <option value="举报投诉">举报投诉</option>
+          <option value="体验建议">体验建议</option>
+        </select>
+        <button id="refreshOps" type="button">刷新</button>
+      </section>
+
+      <main class="ops-main">
+        <section class="ops-list-panel">
+          <div class="ops-list-header">
+            <h2>反馈列表</h2>
+            <span id="opsCount">0 条</span>
+          </div>
+          <div id="opsTicketList" class="ops-ticket-list"></div>
+        </section>
+
+        <section id="opsTicketDetail" class="ops-detail-panel">
+          <div class="empty-state">请选择左侧反馈查看详情。</div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./agent-core.js"></script>
+    <script src="./feedback-store.js"></script>
+    <script src="./ops-app.js"></script>
+  </body>
+</html>

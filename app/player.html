@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>示例棋牌项目智能客服</title>
+    <link rel="stylesheet" href="./styles.css?v=bug-direction-1" />
+  </head>
+  <body class="player-page">
+    <main class="player-shell">
+      <div class="player-statusbar" aria-hidden="true">
+        <span>9:41</span>
+        <span>5G 100%</span>
+      </div>
+      <header class="player-header">
+        <div class="player-left-actions">
+          <button class="player-back" type="button" aria-label="返回">‹</button>
+          <a class="player-debug-link" href="./index.html" aria-label="打开调试工具">调试</a>
+        </div>
+        <div>
+          <h1>示例棋牌项目客服</h1>
+          <p>在线 · 通常几秒内回复</p>
+        </div>
+        <span class="player-service-badge">AI</span>
+      </header>
+
+      <section class="player-quick">
+        <button type="button" data-category="gameplay">
+          <strong>玩法规则</strong>
+          <span>牌型、倍率、结算</span>
+        </button>
+        <button type="button" data-category="activity">
+          <strong>活动奖励</strong>
+          <span>签到、赛事、奖励</span>
+        </button>
+        <button type="button" data-category="payment">
+          <strong>充值支付</strong>
+          <span>未到账、扣费、退款</span>
+        </button>
+        <button type="button" data-category="issue">
+          <strong>问题反馈</strong>
+          <span>BUG、举报、建议</span>
+        </button>
+      </section>
+
+      <section id="playerMessages" class="messages player-messages" aria-live="polite"></section>
+
+      <form id="playerComposer" class="composer player-composer">
+        <input
+          id="playerInput"
+          type="text"
+          autocomplete="off"
+          placeholder="输入问题或反馈编号"
+        />
+        <label class="upload-button" for="playerScreenshotInput" aria-label="上传截图">＋</label>
+        <input id="playerScreenshotInput" class="upload-input" type="file" accept="image/*" />
+        <button type="submit">发送</button>
+      </form>
+    </main>
+
+    <script src="./agent-core.js?v=bug-direction-1"></script>
+    <script src="./feedback-store.js?v=bug-direction-1"></script>
+    <script src="./player-app.js?v=bug-direction-1"></script>
+  </body>
+</html>

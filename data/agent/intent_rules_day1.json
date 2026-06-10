@@ -1,0 +1,116 @@
+{
+  "version": "2026-05-27-day1-night",
+  "project": "示例棋牌项目",
+  "categories": [
+    {
+      "category": "玩法规则",
+      "default_intent": "knowledge_query",
+      "default_priority": "P3",
+      "keywords": ["怎么玩", "规则", "牌型", "炸弹", "王炸", "三人牌局", "标准牌局", "暗牌", "黄金牌活动", "连炸", "组队牌类", "快节奏跑牌玩法", "不洗牌", "压", "倍率", "倍数"],
+      "next_action": "answer_from_kb"
+    },
+    {
+      "category": "活动规则",
+      "default_intent": "knowledge_query",
+      "default_priority": "P3",
+      "keywords": ["活动", "鱼票", "鱼钩", "签到", "任务", "手册", "清空", "过期", "概率"],
+      "next_action": "answer_from_kb"
+    },
+    {
+      "category": "支付充值",
+      "default_intent": "submit_feedback",
+      "default_priority": "P0",
+      "keywords": ["充值", "扣费", "没到账", "不到账", "重复扣", "退款", "订单", "支付", "未成年人", "误充"],
+      "required_fields": ["uid", "amount", "payment_time", "payment_channel", "item", "order_id_or_screenshot"],
+      "next_action": "ask_clarification"
+    },
+    {
+      "category": "资产道具",
+      "default_intent": "submit_feedback",
+      "default_priority": "P1",
+      "keywords": ["金币", "欢乐豆", "豆子", "游戏币", "钻石", "兑换", "买金币", "购买金币", "道具没发", "少了", "没了", "扣了"],
+      "required_fields": ["uid", "asset_type", "asset_change", "game_mode_or_scene", "occurred_at", "screenshot_or_video"],
+      "next_action": "ask_clarification"
+    },
+    {
+      "category": "活动奖励",
+      "default_intent": "submit_feedback",
+      "default_priority": "P1",
+      "keywords": ["奖励没发", "没收到", "没给", "没到账", "称号", "礼包", "比赛奖励", "签到奖励", "未到账"],
+      "required_fields": ["uid", "activity_name", "completed_at", "expected_reward", "screenshot"],
+      "next_action": "ask_clarification"
+    },
+    {
+      "category": "游戏 BUG",
+      "default_intent": "submit_feedback",
+      "default_priority": "P1",
+      "keywords": ["bug", "BUG", "卡顿", "卡死", "闪退", "黑屏", "卡住", "掉线", "显示异常", "结算异常", "进不去", "无法进入房间"],
+      "required_fields": ["uid", "occurred_at", "game_mode", "table_or_round_id", "app_version", "device", "os", "screenshot_or_video"],
+      "next_action": "ask_clarification"
+    },
+    {
+      "category": "账号安全",
+      "default_intent": "submit_feedback",
+      "default_priority": "P1",
+      "keywords": ["登录失败", "登不上", "找回账号", "实名", "账号异常", "封号", "解封"],
+      "required_fields": ["uid_or_phone_suffix", "login_method", "device", "error_message", "last_success_login_at"],
+      "next_action": "ask_clarification"
+    },
+    {
+      "category": "举报投诉",
+      "default_intent": "submit_feedback",
+      "default_priority": "P1",
+      "keywords": ["开挂", "作弊", "骂人", "辱骂", "举报", "外挂"],
+      "required_fields": ["reported_user", "table_or_round_id", "occurred_at", "report_reason", "evidence"],
+      "next_action": "ask_clarification"
+    },
+    {
+      "category": "体验建议",
+      "default_intent": "submit_feedback",
+      "default_priority": "P2",
+      "keywords": ["建议", "希望", "太慢", "不好用", "优化", "匹配慢", "界面"],
+      "required_fields": ["module", "current_problem", "expected_improvement", "frequency"],
+      "next_action": "ask_clarification"
+    },
+    {
+      "category": "比赛规则",
+      "default_intent": "knowledge_query",
+      "default_priority": "P3",
+      "keywords": ["比赛", "新手赛事", "自建赛", "大米赛", "五常大米", "报名", "名次"],
+      "next_action": "answer_from_kb"
+    }
+  ],
+  "risk_rules": [
+    {
+      "risk_flag": "payment",
+      "priority": "P0",
+      "keywords": ["充值", "扣费", "订单", "退款", "重复扣费", "未成年人"]
+    },
+    {
+      "risk_flag": "public_complaint",
+      "priority": "P0",
+      "keywords": ["投诉", "12315", "发网上", "曝光", "差评", "维权"]
+    },
+    {
+      "risk_flag": "login_blocker",
+      "priority": "P0",
+      "keywords": ["登不上", "无法登录", "进不去", "无法进入房间"]
+    },
+    {
+      "risk_flag": "crash_blocker",
+      "priority": "P0",
+      "keywords": ["闪退", "卡死", "黑屏", "大面积", "很多人"]
+    },
+    {
+      "risk_flag": "manual_review",
+      "priority": "P1",
+      "keywords": ["账号", "封禁", "实名", "处罚", "解封"]
+    },
+    {
+      "risk_flag": "abuse_report",
+      "priority": "P1",
+      "keywords": ["开挂", "作弊", "辱骂", "骂人", "外挂"]
+    }
+  ],
+  "status_query_keywords": ["查进度", "处理到哪", "反馈结果", "反馈编号", "FB"]
+}
