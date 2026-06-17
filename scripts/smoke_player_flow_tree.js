@@ -254,6 +254,23 @@ record("PFT-022", "钱没了需要区分人民币与游戏资产", () => {
   expectExcludes(clarification, ["欢乐豆", "豆子"], "money ambiguity fallback");
 });
 
+record("PFT-024", "进度查询回复应分行展示编号状态摘要", () => {
+  resetMessages();
+  vm.runInContext("playerState.currentDraft = null; playerState.pendingClarification = null;", sandbox);
+  sandbox.__feedbacks = [];
+  sandbox.__feedbacks.push({
+    feedback_id: "FB202606160001",
+    status: "submitted",
+    issue: {
+      ai_summary: "玩家反馈对局连续卡住，点击无响应。",
+    },
+  });
+  sandbox.handlePlayerMessage("FB202606160001 处理到哪了");
+  const html = allMessages();
+  expectIncludes(html, ["反馈编号：FB202606160001", "当前状态：已提交", "问题摘要：玩家反馈对局连续卡住"], "progress query format");
+  expectExcludes(html, ["反馈 FB202606160001 当前状态"], "progress query format");
+});
+
 const passed = results.filter((item) => item.status === "PASS").length;
 const failed = results.filter((item) => item.status === "FAIL");
 

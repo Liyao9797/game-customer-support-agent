@@ -216,7 +216,7 @@ function renderProgressQuery(text, route) {
     addAgentMessage(`暂未找到 ${id}，请确认反馈编号是否输入正确。`);
     return;
   }
-  addAgentMessage(`反馈 ${id} 当前状态：${AgentCore.getStatusLabel(feedback.status)}。\n问题摘要：${feedback.issue.ai_summary}`);
+  addAgentMessage(`反馈编号：${id}\n当前状态：${AgentCore.getStatusLabel(feedback.status)}\n问题摘要：${feedback.issue.ai_summary}`);
 }
 
 function renderPlayerFeedbackCard(draft) {
@@ -453,9 +453,13 @@ function addMessage(role, content) {
   const message = document.createElement("article");
   message.className = `message ${role}`;
   const speaker = role === "agent" ? "示例客服" : "我";
+  const avatar = role === "agent" ? "AI" : "我";
   message.innerHTML = `
-    <span class="message-speaker">${speaker}</span>
-    <span class="message-content">${escapeHtml(content)}</span>
+    <span class="message-avatar" aria-hidden="true">${avatar}</span>
+    <div class="message-body">
+      <span class="message-speaker">${speaker}</span>
+      <span class="message-content">${escapeHtml(content)}</span>
+    </div>
   `;
   playerEls.messages.appendChild(message);
   playerEls.messages.scrollTop = playerEls.messages.scrollHeight;
